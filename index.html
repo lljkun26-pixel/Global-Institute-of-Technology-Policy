@@ -655,20 +655,19 @@
     font-size: clamp(17px, 4.3vw, 24px);
   }
 }
-  </style>
+ </style>
 </head>
 <body>
-  <div class="top-strip"></div>
-  <header class="site-header">
+  <header class="topbar">
     <div class="header-inner">
-      <button class="brand" data-route="home" aria-label="返回首页">
-        <img class="brand-mark" src="gitp-logo-mark.png" alt="Global Institute of Technology Policy 環球科技政策研究院 logo">
-        <div class="brand-text">
+      <a class="brand" href="#home" data-route-link="home" aria-label="Global Institute of Technology Policy">
+        <img class="brand-mark" src="assets/gitp-logo-mark.png" alt="Global Institute of Technology Policy logo">
+        <span class="brand-copy">
           <span class="brand-title">Global Institute of Technology Policy</span>
-          <span>環球科技政策研究院</span>
-        </div>
-      </button>
-      <nav class="nav" aria-label="主导航">
+          <span class="brand-subtitle">環球科技政策研究院</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
         <button class="active" data-route="home">简介</button>
         <button data-route="teaching">教学团队</button>
         <button data-route="research">研究团队</button>
