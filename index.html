@@ -642,6 +642,19 @@
         grid-template-columns: 1fr;
       }
     }
+    .brand-title,
+.brand-name,
+.site-title {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .brand-title,
+  .brand-name,
+  .site-title {
+    font-size: clamp(17px, 4.3vw, 24px);
+  }
+}
   </style>
 </head>
 <body>
