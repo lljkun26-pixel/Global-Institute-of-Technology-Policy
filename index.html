@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Institute of Technology Policy | 環球科技政策研究院</title>
+  <style>
+    :root {
+      --blue-950: #061f3d;
+      --blue-900: #082a52;
+      --blue-800: #123c67;
+      --blue-700: #2b5d7b;
+      --blue-100: #edf4f7;
+      --yellow: #cfa33a;
+      --yellow-soft: #f6e8bd;
+      --ink: #10233c;
+      --muted: #6f7c86;
+      --line: #d8dde0;
+      --paper: #f7f3ea;
+      --white: #ffffff;
+      --shadow: 0 18px 42px rgba(7, 26, 47, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(6, 31, 61, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(6, 31, 61, 0.025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 38px 38px;
+      font-family: "American Typewriter", "KaiTi", "STKaiti", "Kaiti SC", serif;
+    }
+
+    .zh {
+      font-family: "KaiTi", "STKaiti", "Kaiti SC", serif;
+    }
+
+    a,
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .top-strip {
+      height: 7px;
+      background: linear-gradient(90deg, var(--blue-950) 0 42%, var(--yellow) 42% 55%, var(--blue-700) 55%);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 247, 239, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 30px;
+      align-items: center;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 14px 34px;
+    }
+
+    .brand {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 16px;
+      align-items: center;
+      width: 100%;
+      padding: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .brand-mark {
+      display: block;
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--blue-950);
+      font-size: 20px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 6px;
+      color: var(--blue-700);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .nav button {
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 0;
+      color: var(--blue-950);
+      background: transparent;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0;
+      border-bottom: 4px solid transparent;
+    }
+
+    .nav button:hover,
+    .nav button.active {
+      color: var(--blue-700);
+      border-bottom-color: var(--yellow);
+    }
+
+    .page {
+      display: none;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 34px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .home-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(420px, 1.04fr);
+      min-height: calc(100vh - 130px);
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(34px, 6vw, 72px);
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(6, 31, 61, 0.98), rgba(18, 60, 103, 0.94)),
+        var(--blue-950);
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.28;
+      background:
+        linear-gradient(135deg, transparent 0 38%, rgba(207, 163, 58, 0.88) 38% 42%, transparent 42%),
+        repeating-linear-gradient(90deg, transparent 0 34px, rgba(255,255,255,0.15) 35px, transparent 36px),
+        repeating-linear-gradient(0deg, transparent 0 34px, rgba(207,163,58,0.16) 35px, transparent 36px);
+      mask-image: linear-gradient(90deg, #000, transparent 80%);
+    }
+
+    .eyebrow {
+      position: relative;
+      display: inline-flex;
+      margin-bottom: 26px;
+      padding: 9px 12px;
+      color: var(--blue-950);
+      background: var(--yellow);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      position: relative;
+      margin: 0;
+      max-width: 840px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 0.98;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-copy p {
+      position: relative;
+      max-width: 740px;
+      margin: 26px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 21px;
+      line-height: 1.75;
+    }
+
+    .hero-links {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 16px;
+      color: var(--blue-950);
+      background: var(--yellow);
+      font-weight: 900;
+    }
+
+    .button-link.alt {
+      color: #fff;
+      background: transparent;
+      outline: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .hero-feature {
+      display: grid;
+      grid-template-rows: minmax(340px, 1fr) auto;
+      background: #fff;
+    }
+
+    .feature-visual {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(247, 243, 234, 0.04), rgba(6, 31, 61, 0.08)),
+        url("assets/home-final.png") center / cover no-repeat;
+    }
+
+    .feature-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(207, 163, 58, 0.2), transparent 35%);
+    }
+
+    .feature-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 68%, rgba(250, 247, 239, 0.86)),
+        linear-gradient(90deg, rgba(6, 31, 61, 0.08), transparent 58%);
+      pointer-events: none;
+    }
+
+    .feature-caption {
+      padding: 28px;
+      border-top: 1px solid var(--line);
+      background: #fbf8ef;
+    }
+
+    .feature-caption span,
+    .card-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue-700);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .feature-caption h2,
+    .section-title h2,
+    .detail h2 {
+      margin: 0;
+      color: var(--blue-950);
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.06;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .home-feed {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.46fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .feed-block,
+    .listing-shell,
+    .detail {
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .feed-block {
+      padding: 26px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 5px solid var(--blue-950);
+    }
+
+    .section-title button {
+      color: var(--blue-700);
+      background: transparent;
+      font-size: 16px;
+      font-weight: 900;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .news-grid,
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .news-card,
+    .content-card {
+      display: grid;
+      align-content: start;
+      min-height: 220px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+      text-align: left;
+      transition: 0.18s ease;
+    }
+
+    .news-card:hover,
+    .content-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue-700);
+      box-shadow: 0 14px 34px rgba(17, 63, 112, 0.16);
+    }
+
+    .news-card.featured {
+      grid-column: span 2;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(6, 31, 61, 0.95), rgba(43, 93, 123, 0.88)),
+        var(--blue-950);
+    }
+
+    .news-card.featured .card-label,
+    .news-card.featured p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .news-card.featured h3 {
+      color: #fff;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .news-card h3,
+    .content-card h3 {
+      margin: 0 0 12px;
+      color: var(--blue-950);
+      font-size: 24px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .news-card p,
+    .content-card p,
+    .detail p,
+    .detail li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      text-align: left;
+    }
+
+    .event-date {
+      display: grid;
+      place-items: center;
+      min-height: 72px;
+      color: var(--blue-950);
+      background: var(--yellow);
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 0.95;
+    }
+
+    .event-date small {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .event-row h3 {
+      margin: 0 0 8px;
+      color: var(--blue-950);
+      font-size: 22px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .event-row p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .listing-shell {
+      padding: 30px;
+    }
+
+    .listing-top {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.42fr);
+      gap: 28px;
+      margin-bottom: 26px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .listing-top h1 {
+      color: var(--blue-950);
+      font-size: clamp(44px, 7vw, 86px);
+    }
+
+    .listing-top p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .summary-box {
+      padding: 18px;
+      color: #fff;
+      background: var(--blue-950);
+      border-left: 10px solid var(--yellow);
+    }
+
+    .summary-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--yellow);
+      font-size: 17px;
+    }
+
+    .summary-box span {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .content-card .meta {
+      margin-top: 16px;
+      color: var(--blue-700);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .detail {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: clamp(26px, 5vw, 56px);
+    }
+
+    .back-button {
+      display: inline-flex;
+      margin-bottom: 28px;
+      padding: 10px 12px;
+      color: var(--blue-950);
+      background: var(--yellow);
+      font-weight: 900;
+    }
+
+    .detail-header {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 5px solid var(--blue-950);
+    }
+
+    .detail-mark {
+      display: grid;
+      place-items: center;
+      width: 120px;
+      height: 120px;
+      color: var(--blue-950);
+      background: var(--yellow);
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .detail h3 {
+      margin: 28px 0 10px;
+      color: var(--blue-950);
+      font-size: 24px;
+    }
+
+    .detail ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .detail-footer {
+      margin-top: 34px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    footer {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 34px 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner,
+      .home-hero,
+      .home-feed,
+      .listing-top {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+
+      .news-grid,
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .news-card.featured {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner,
+      .page {
+        padding: 20px;
+      }
+
+      .brand {
+        grid-template-columns: 58px 1fr;
+      }
+
+      .brand-mark {
+        width: 58px;
+        height: 58px;
+      }
+
+      .brand-text strong {
+        font-size: 18px;
+      }
+
+      .nav button {
+        font-size: 15px;
+        padding: 0 10px;
+      }
+
+      .hero-copy {
+        padding: 30px 24px;
+      }
+
+      h1,
+      .listing-top h1 {
+        font-size: 40px;
+      }
+
+      .news-grid,
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-card.featured {
+        grid-column: span 1;
+      }
+
+      .detail-header,
+      .event-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip"></div>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="brand" data-route="home" aria-label="返回首页">
+        <img class="brand-mark" src="assets/gitp-logo-mark.png" alt="Global Institute of Technology Policy 環球科技政策研究院 logo">
+        <div class="brand-text">
+          <strong>Global Institute of Technology Policy</strong>
+          <span>環球科技政策研究院</span>
+        </div>
+      </button>
+      <nav class="nav" aria-label="主导航">
+        <button class="active" data-route="home">简介</button>
+        <button data-route="teaching">教学团队</button>
+        <button data-route="research">研究团队</button>
+        <button data-route="news">动态</button>
+        <button data-route="events">学术活动</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="page-home">
+      <div class="home-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">AI & Law · Technology Governance · Global Policy</span>
+          <h1>Global Institute of Technology Policy</h1>
+          <p class="zh">環球科技政策研究院聚焦人工智能与法律、数据治理、平台监管、数字经济与全球科技治理，建设面向前沿问题的研究、教学与公共对话平台。</p>
+          <div class="hero-links">
+            <button class="button-link" data-route="research">Research Agenda</button>
+            <button class="button-link alt" data-route="events">Upcoming Events</button>
+          </div>
+        </div>
+        <div class="hero-feature">
+          <div class="feature-visual" aria-label="AI and Law visual"></div>
+          <div class="feature-caption">
+            <span>Featured Focus</span>
+            <h2>The Measured Signal for AI, Law and Governance.</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-feed">
+        <section class="feed-block">
+          <div class="section-title">
+            <h2>Latest News</h2>
+            <button data-route="news">view all</button>
+          </div>
+          <div class="news-grid">
+            <button class="news-card featured" data-detail="news-ai-brief">
+              <span class="card-label">Research Brief</span>
+              <h3>AI-Generated Decisions and the New Burden of Explanation</h3>
+              <p class="zh">研究院发布自动化决策解释义务专题简报，讨论透明度、可审计性与责任归属。</p>
+            </button>
+            <button class="news-card" data-detail="news-course">
+              <span class="card-label">Teaching Update</span>
+              <h3>AI & Law Studio Course Opens</h3>
+              <p class="zh">课程以真实监管争议、案例推演和政策写作为核心训练方式。</p>
+            </button>
+            <button class="news-card" data-detail="news-partner">
+              <span class="card-label">Partnership</span>
+              <h3>Global Tech Governance Reading Group</h3>
+              <p class="zh">跨校读书会将围绕欧盟 AI Act、美国行政规则与中国治理框架展开。</p>
+            </button>
+          </div>
+        </section>
+
+        <aside class="feed-block">
+          <div class="section-title">
+            <h2>Upcoming Events</h2>
+            <button data-route="events">view all</button>
+          </div>
+          <div class="event-list">
+            <button class="event-row" data-detail="event-roundtable">
+              <div class="event-date">18<small>Sep</small></div>
+              <div><h3>AI Governance Roundtable</h3><p class="zh">模型透明度、风险分级与公共部门采购。</p></div>
+            </button>
+            <button class="event-row" data-detail="event-data">
+              <div class="event-date">26<small>Oct</small></div>
+              <div><h3>Data Flows and Digital Trade</h3><p class="zh">数据跨境、可信数据空间与数字贸易协定。</p></div>
+            </button>
+            <button class="event-row" data-detail="event-workshop">
+              <div class="event-date">12<small>Nov</small></div>
+              <div><h3>Junior Scholars Workshop</h3><p class="zh">科技法青年学者论文工作坊。</p></div>
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page" id="page-teaching"></section>
+    <section class="page" id="page-research"></section>
+    <section class="page" id="page-news"></section>
+    <section class="page" id="page-events"></section>
+    <section class="page" id="page-detail"></section>
+  </main>
+
+  <footer>Global Institute of Technology Policy · 環球科技政策研究院 · AI & Law</footer>
+
+  <script>
+    const sections = {
+      teaching: {
+        label: "Faculty",
+        title: "教学团队",
+        intro: "课程体系以 AI & Law 为核心，连接科技法、数据治理、平台监管、产业政策与全球治理。",
+        summary: "先展示所有教师名片；点击任一名片进入该教师的详细介绍。",
+        cards: [
+          { id: "teacher-lin", icon: "AI", label: "Professor", title: "林教授｜AI 与法律", text: "研究人工智能监管、自动化决策责任与算法透明度。", meta: "AI Governance · Administrative Law" },
+          { id: "teacher-chen", icon: "DT", label: "Associate Professor", title: "陈教授｜数据治理", text: "关注个人信息保护、数据跨境、数据要素市场与企业合规。", meta: "Data Protection · Compliance" },
+          { id: "teacher-wong", icon: "IP", label: "Practice Fellow", title: "王博士｜知识产权与创新", text: "讲授技术创新、版权、专利政策与生成式 AI 训练数据争议。", meta: "IP · Innovation Policy" },
+          { id: "teacher-zhao", icon: "PL", label: "Lecturer", title: "赵老师｜平台与竞争", text: "聚焦平台经济、反垄断、内容治理与数字市场监管。", meta: "Platform Regulation" },
+          { id: "teacher-sun", icon: "CY", label: "Adjunct Fellow", title: "孙博士｜网络安全政策", text: "围绕关键信息基础设施、网络韧性与安全合规展开教学。", meta: "Cybersecurity Policy" },
+          { id: "teacher-he", icon: "GL", label: "Visiting Professor", title: "何教授｜全球科技治理", text: "比较主要法域科技政策，关注国际规则、标准与制度竞争。", meta: "Global Governance" }
+        ]
+      },
+      research: {
+        label: "Research",
+        title: "研究团队",
+        intro: "研究团队围绕前沿技术及其制度后果展开项目制研究，强调比较法、实证材料与政策可执行性。",
+        summary: "每个研究方向以卡片呈现；点击后查看研究问题、方法与产出。",
+        cards: [
+          { id: "research-ai", icon: "AI", label: "Research Cluster", title: "人工智能治理", text: "模型透明度、风险分级、自动化决策、公共部门 AI 采购。", meta: "AI Act · Algorithmic Accountability" },
+          { id: "research-data", icon: "DATA", label: "Research Cluster", title: "数据治理与数字贸易", text: "数据跨境、可信数据空间、个人信息保护与数字贸易规则。", meta: "Data Flows · Privacy" },
+          { id: "research-platform", icon: "PF", label: "Research Cluster", title: "平台监管与数字经济", text: "平台竞争、内容治理、算法推荐与数字市场制度设计。", meta: "Platform · Competition" },
+          { id: "research-ip", icon: "IP", label: "Research Cluster", title: "生成式 AI 与知识产权", text: "训练数据、作品生成、权利归属、合理使用与许可机制。", meta: "Copyright · GenAI" },
+          { id: "research-cyber", icon: "SEC", label: "Research Cluster", title: "网络安全与关键基础设施", text: "网络韧性、安全审查、供应链安全与基础设施治理。", meta: "Cybersecurity · Resilience" },
+          { id: "research-standards", icon: "STD", label: "Research Cluster", title: "技术标准与全球治理", text: "AI 标准、国际组织、监管互认与科技政策的制度竞争。", meta: "Standards · Global Policy" }
+        ]
+      },
+      news: {
+        label: "News",
+        title: "动态",
+        intro: "展示研究院最新发布、课程更新、合作项目与政策观察。",
+        summary: "点击新闻卡片可进入具体新闻页面。",
+        cards: [
+          { id: "news-ai-brief", icon: "04", label: "Research Brief", title: "AI-Generated Decisions and the New Burden of Explanation", text: "自动化决策解释义务专题简报发布。", meta: "September 4, 2026" },
+          { id: "news-course", icon: "12", label: "Teaching Update", title: "AI & Law Studio Course Opens", text: "新课程模块开放报名，聚焦真实政策争议与案例写作。", meta: "September 12, 2026" },
+          { id: "news-partner", icon: "20", label: "Partnership", title: "Global Tech Governance Reading Group", text: "跨校读书会启动，比较主要法域 AI 治理路径。", meta: "September 20, 2026" },
+          { id: "news-report", icon: "28", label: "Report", title: "Platform Accountability Index Announced", text: "平台责任指数项目进入方法论测试阶段。", meta: "September 28, 2026" },
+          { id: "news-visit", icon: "03", label: "Visit", title: "Visiting Scholars Programme 2027", text: "访问学者项目将开放全球申请。", meta: "October 3, 2026" },
+          { id: "news-policy", icon: "15", label: "Policy Watch", title: "Comparative Notes on AI Safety Rules", text: "追踪 AI 安全规则在不同法域中的制度分化。", meta: "October 15, 2026" }
+        ]
+      },
+      events: {
+        label: "Events",
+        title: "学术活动",
+        intro: "研究院定期举办圆桌、研讨会、公开讲座与青年学者工作坊。",
+        summary: "点击活动卡片可查看主题、议程和参与方式。",
+        cards: [
+          { id: "event-roundtable", icon: "9.18", label: "Roundtable", title: "AI Governance Roundtable", text: "模型透明度、风险分级与公共部门采购。", meta: "September 18, 2026" },
+          { id: "event-data", icon: "10.26", label: "Seminar", title: "Data Flows and Digital Trade", text: "数据跨境、可信数据空间与数字贸易协定。", meta: "October 26, 2026" },
+          { id: "event-workshop", icon: "11.12", label: "Workshop", title: "Junior Scholars Workshop", text: "科技法青年学者论文工作坊。", meta: "November 12, 2026" },
+          { id: "event-lecture", icon: "12.04", label: "Public Lecture", title: "Who Governs Foundation Models?", text: "基础模型治理的机构分工与责任结构。", meta: "December 4, 2026" },
+          { id: "event-clinic", icon: "1.09", label: "Policy Clinic", title: "AI Procurement Policy Clinic", text: "公共部门 AI 采购政策设计训练营。", meta: "January 9, 2027" },
+          { id: "event-forum", icon: "3.18", label: "Forum", title: "Global Forum on Technology Policy", text: "年度全球科技政策论坛。", meta: "March 18, 2027" }
+        ]
+      }
+    };
+
+    const details = {
+      "teacher-lin": ["林教授｜AI 与法律", "AI", "研究人工智能监管、自动化决策责任、算法透明度与公共部门使用 AI 的合法性边界。", ["讲授 AI and Law、算法治理、行政法中的自动化决策。", "主持“高风险 AI 应用的解释义务”研究项目。", "长期参与跨法域科技监管比较研究。"]],
+      "teacher-chen": ["陈教授｜数据治理", "DT", "关注个人信息保护、数据跨境流动、数据要素市场和组织合规架构。", ["讲授数据保护法、企业数据合规与数字贸易规则。", "研究数据治理中的权利配置与市场效率。", "为研究院数据政策项目提供方法论指导。"]],
+      "teacher-wong": ["王博士｜知识产权与创新", "IP", "研究生成式 AI 训练数据、作品生成、版权例外、许可机制与创新政策。", ["开设生成式 AI 与版权争议专题。", "关注技术创新与创作者利益平衡。", "指导学生完成政策备忘录与案例评论。"]],
+      "teacher-zhao": ["赵老师｜平台与竞争", "PL", "聚焦平台经济、反垄断、内容治理、算法推荐与数字市场监管。", ["讲授平台责任与数字市场规制。", "参与平台透明度与问责机制项目。", "带领学生进行监管案例模拟。"]],
+      "teacher-sun": ["孙博士｜网络安全政策", "CY", "围绕关键信息基础设施、网络韧性、安全合规和供应链安全展开教学。", ["开设网络安全政策专题。", "研究安全审查和基础设施治理。", "推动政策、技术与组织管理的交叉训练。"]],
+      "teacher-he": ["何教授｜全球科技治理", "GL", "比较主要法域科技政策演进，关注国际组织、技术标准与制度竞争。", ["讲授全球科技治理与比较监管。", "组织国际读书会和访问学者讨论。", "推动研究院国际合作网络建设。"]],
+      "research-ai": ["人工智能治理", "AI", "研究模型透明度、风险分级、自动化决策、公共部门 AI 采购和高风险场景监管。", ["比较欧盟、美国、中国和国际组织的 AI 治理框架。", "建立高风险 AI 应用政策评估清单。", "输出研究简报、政策备忘录与学术论文。"]],
+      "research-data": ["数据治理与数字贸易", "DATA", "研究数据跨境、可信数据空间、个人信息保护、数据产权与数字贸易规则。", ["梳理数据跨境规则的制度差异。", "关注数据要素市场的法律基础。", "服务企业合规和公共政策讨论。"]],
+      "research-platform": ["平台监管与数字经济", "PF", "研究平台竞争、内容治理、算法推荐、广告透明度和数字市场制度设计。", ["追踪主要平台监管法案和执法案例。", "分析算法推荐与市场公平问题。", "建设平台责任案例库。"]],
+      "research-ip": ["生成式 AI 与知识产权", "IP", "研究训练数据、作品生成、作者身份、权利归属、合理使用和许可机制。", ["比较版权例外和文本数据挖掘规则。", "研究生成内容的权利配置。", "组织 AI 版权争议圆桌。"]],
+      "research-cyber": ["网络安全与关键基础设施", "SEC", "研究网络韧性、安全审查、供应链安全、关键信息基础设施和安全合规。", ["评估关键基础设施治理工具。", "分析网络安全法制和组织治理关系。", "推动技术风险和法律责任的对接研究。"]],
+      "research-standards": ["技术标准与全球治理", "STD", "研究 AI 标准、国际组织、监管互认、合格评定和科技政策中的制度竞争。", ["追踪标准制定机构和政策文件。", "分析技术标准的治理功能。", "推动跨学科标准政策研究。"]],
+      "news-ai-brief": ["AI-Generated Decisions and the New Burden of Explanation", "04", "研究院发布自动化决策解释义务专题简报，讨论透明度、可审计性与责任归属。", ["简报提出解释义务不应只被理解为技术披露。", "重点分析公共部门和平台场景中的责任链条。", "后续将发布比较法版本。"]],
+      "news-course": ["AI & Law Studio Course Opens", "12", "新课程模块开放报名，课程以真实监管争议、案例推演和政策写作为核心训练方式。", ["学生将完成政策备忘录、听证模拟和案例评论。", "课程覆盖生成式 AI、数据治理和平台责任。", "优先面向科技法和公共政策方向学生。"]],
+      "news-partner": ["Global Tech Governance Reading Group", "20", "跨校读书会启动，围绕欧盟 AI Act、美国行政规则与中国治理框架展开。", ["每月一次专题讨论。", "采用论文、法案和政策文件混合阅读。", "欢迎青年研究者参与报告。"]],
+      "news-report": ["Platform Accountability Index Announced", "28", "平台责任指数项目进入方法论测试阶段，聚焦透明度、申诉机制与算法问责。", ["指数将采用公开政策、案例和用户治理机制作为材料。", "初版报告计划发布于 2027 年。", "项目邀请合作机构参与方法论评议。"]],
+      "news-visit": ["Visiting Scholars Programme 2027", "03", "访问学者项目将开放全球申请，支持科技政策相关主题的驻院研究。", ["项目周期为 1 至 3 个月。", "申请者需提交研究计划。", "研究院将提供研讨和发表支持。"]],
+      "news-policy": ["Comparative Notes on AI Safety Rules", "15", "政策观察追踪 AI 安全规则在不同法域中的制度分化。", ["重点关注模型评估、安全测试和报告义务。", "比较监管机构、企业和第三方评估者角色。", "后续将纳入标准化组织动态。"]],
+      "event-roundtable": ["AI Governance Roundtable", "9.18", "本次圆桌讨论模型透明度、风险分级、高风险应用与公共部门采购。", ["闭门圆桌与公开摘要相结合。", "邀请法学、计算机和公共管理学者参与。", "会后形成政策问题清单。"]],
+      "event-data": ["Data Flows and Digital Trade", "10.26", "研讨会围绕数据跨境、可信数据空间、数字贸易协定与企业合规展开交流。", ["设置比较法、产业实践和政策设计三个单元。", "关注数据流动和安全之间的制度平衡。", "欢迎提交短论文或案例材料。"]],
+      "event-workshop": ["Junior Scholars Workshop", "11.12", "科技法青年学者论文工作坊，提供论文报告、同行评议和研究方法训练。", ["每位报告人获得两位评议人反馈。", "主题覆盖 AI、数据、平台、知识产权和网络安全。", "优秀论文将推荐进入研究院工作论文系列。"]],
+      "event-lecture": ["Who Governs Foundation Models?", "12.04", "公开讲座讨论基础模型治理的机构分工、责任结构与全球监管竞争。", ["讲座后设开放问答。", "适合法律、计算机和公共政策背景听众。", "将同步发布讲座摘要。"]],
+      "event-clinic": ["AI Procurement Policy Clinic", "1.09", "训练营聚焦公共部门 AI 采购政策设计，强调风险评估、合同条款与问责机制。", ["采用小组制政策写作。", "设置模拟采购审查环节。", "产出模板化政策工具包。"]],
+      "event-forum": ["Global Forum on Technology Policy", "3.18", "年度全球科技政策论坛，汇集学界、产业和公共部门讨论技术治理前沿。", ["主题包括 AI 安全、数据治理、平台责任和全球标准。", "论坛设主旨演讲、平行圆桌和青年学者单元。", "会后发布年度观察报告。"]]
+    };
+
+    const pages = document.querySelectorAll(".page");
+    const navButtons = document.querySelectorAll("[data-route]");
+
+    function setActiveNav(route) {
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.route === route);
+      });
+    }
+
+    function showPage(route) {
+      pages.forEach((page) => page.classList.remove("active"));
+      const page = document.querySelector(`#page-${route}`);
+      if (page) page.classList.add("active");
+      setActiveNav(route === "detail" ? "" : route);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", route === "home" ? "#" : `#${route}`);
+    }
+
+    function renderListing(route) {
+      const section = sections[route];
+      const page = document.querySelector(`#page-${route}`);
+      page.innerHTML = `
+        <div class="listing-shell">
+          <div class="listing-top">
+            <div>
+              <span class="eyebrow">${section.label}</span>
+              <h1>${section.title}</h1>
+              <p class="zh">${section.intro}</p>
+            </div>
+            <div class="summary-box">
+              <strong>Card-first Structure</strong>
+              <span class="zh">${section.summary}</span>
+            </div>
+          </div>
+          <div class="card-grid">
+            ${section.cards.map(card => `
+              <button class="content-card" data-detail="${card.id}" data-parent="${route}">
+                <span class="card-label">${card.label}</span>
+                <div class="detail-mark" style="width:64px;height:64px;font-size:18px;margin-bottom:18px;">${card.icon}</div>
+                <h3>${card.title}</h3>
+                <p class="zh">${card.text}</p>
+                <div class="meta">${card.meta}</div>
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDetail(id, parent = "home") {
+      const item = details[id];
+      if (!item) return;
+      const [title, icon, intro, bullets] = item;
+      const page = document.querySelector("#page-detail");
+      page.innerHTML = `
+        <article class="detail">
+          <button class="back-button" data-route="${parent}">Back to ${parent === "home" ? "Home" : sections[parent].title}</button>
+          <div class="detail-header">
+            <div class="detail-mark">${icon}</div>
+            <div>
+              <span class="card-label">Detail</span>
+              <h2>${title}</h2>
+            </div>
+          </div>
+          <p class="zh">${intro}</p>
+          <h3>重点内容</h3>
+          <ul class="zh">
+            ${bullets.map(text => `<li>${text}</li>`).join("")}
+          </ul>
+          <div class="detail-footer">Global Institute of Technology Policy · 環球科技政策研究院</div>
+        </article>
+      `;
+      showPage("detail");
+    }
+
+    Object.keys(sections).forEach(renderListing);
+
+    document.addEventListener("click", (event) => {
+      const detailTarget = event.target.closest("[data-detail]");
+      if (detailTarget) {
+        renderDetail(detailTarget.dataset.detail, detailTarget.dataset.parent || "home");
+        return;
+      }
+
+      const routeTarget = event.target.closest("[data-route]");
+      if (routeTarget) {
+        const route = routeTarget.dataset.route;
+        if (sections[route] || route === "home") showPage(route);
+      }
+    });
+
+    const initialRoute = location.hash.replace("#", "") || "home";
+    if (sections[initialRoute]) showPage(initialRoute);
+  </script>
+</body>
+</html>
