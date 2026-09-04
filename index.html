@@ -259,7 +259,7 @@
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(247, 243, 234, 0.04), rgba(6, 31, 61, 0.08)),
-        url("home-final.png") center / cover no-repeat;
+        url("assets/home-final.png") center / cover no-repeat;
     }
 
     .feature-visual::before {
@@ -642,32 +642,20 @@
         grid-template-columns: 1fr;
       }
     }
-    .brand-title,
-.brand-name,
-.site-title {
-  white-space: nowrap;
-}
-
-@media (max-width: 760px) {
-  .brand-title,
-  .brand-name,
-  .site-title {
-    font-size: clamp(17px, 4.3vw, 24px);
-  }
-}
- </style>
+  </style>
 </head>
 <body>
-  <header class="topbar">
+  <div class="top-strip"></div>
+  <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#home" data-route-link="home" aria-label="Global Institute of Technology Policy">
-        <img class="brand-mark" src="gitp-logo-mark.png" alt="Global Institute of Technology Policy logo">
-        <span class="brand-copy">
-          <span class="brand-title">Global Institute of Technology Policy</span>
-          <span class="brand-subtitle">環球科技政策研究院</span>
-        </span>
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
+      <button class="brand" data-route="home" aria-label="返回首页">
+        <img class="brand-mark" src="assets/gitp-logo-mark.png" alt="Global Institute of Technology Policy 環球科技政策研究院 logo">
+        <div class="brand-text">
+          <strong>Global Institute of Technology Policy</strong>
+          <span>環球科技政策研究院</span>
+        </div>
+      </button>
+      <nav class="nav" aria-label="主导航">
         <button class="active" data-route="home">简介</button>
         <button data-route="teaching">教学团队</button>
         <button data-route="research">研究团队</button>
